@@ -32,8 +32,14 @@
                                     <action selector="randomApod:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VP0-iT-WbH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfa-vY-gvG">
+                                <rect key="frame" x="186" y="361.5" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5R-KO-ZyQ">
-                                <rect key="frame" x="41.5" y="362" width="331" height="20.5"/>
+                                <rect key="frame" x="41.5" y="341" width="331" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,19 +49,22 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="le0-Vj-IJK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="4l5-gw-FAr"/>
+                            <constraint firstItem="AYE-Zg-cnf" firstAttribute="top" secondItem="Vfa-vY-gvG" secondAttribute="bottom" constant="50" id="CX5-to-G74"/>
+                            <constraint firstItem="Vfa-vY-gvG" firstAttribute="top" secondItem="j5R-KO-ZyQ" secondAttribute="bottom" id="HRQ-l9-vNa"/>
                             <constraint firstItem="AYE-Zg-cnf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PVo-J1-BNn"/>
                             <constraint firstItem="j5R-KO-ZyQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RlQ-3k-L9v"/>
                             <constraint firstItem="AYE-Zg-cnf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vka-lF-ait"/>
+                            <constraint firstItem="Vfa-vY-gvG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aU6-iA-s83"/>
                             <constraint firstItem="AYE-Zg-cnf" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="abW-OX-x6G"/>
                             <constraint firstItem="j5R-KO-ZyQ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="hZ0-eG-TTT"/>
                             <constraint firstItem="le0-Vj-IJK" firstAttribute="top" secondItem="AYE-Zg-cnf" secondAttribute="bottom" constant="25" id="iY6-O4-UaC"/>
                             <constraint firstItem="le0-Vj-IJK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j9D-yM-P8Q"/>
-                            <constraint firstItem="AYE-Zg-cnf" firstAttribute="top" secondItem="j5R-KO-ZyQ" secondAttribute="bottom" constant="50" id="pSk-sl-xmj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OdU-9p-YAd"/>
                     <connections>
                         <outlet property="randomApodButton" destination="le0-Vj-IJK" id="byw-qn-eHj"/>
+                        <outlet property="timeLabel" destination="Vfa-vY-gvG" id="0Ov-8q-oYZ"/>
                         <outlet property="viewApodButton" destination="AYE-Zg-cnf" id="NAt-u6-h4f"/>
                         <outlet property="welcomeLabel" destination="j5R-KO-ZyQ" id="4fF-rA-djn"/>
                     </connections>

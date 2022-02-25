@@ -6,17 +6,35 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
 //MARK: Outlets
     @IBOutlet weak var viewApodButton: UIButton!
     @IBOutlet weak var randomApodButton: UIButton!
     @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+//MARK: Viewmodel connection
+    let ViewModel = HomeViewModel()
+    
+//MARK: Variables
+    var welcomeText: String = "checking date.."
     
 //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        ViewModel.getTime()
+        
+        //MARK: Subscription
+        ViewModel._clock.subscribe{ event in
+            self.timeLabel.text = event
+        }
+        
+        ViewModel._date.subscribe{ event in
+            self.updateTimeLabel(date: event.element ?? "")
+        }.disposed(by: DisposeBag())
     }
     
 //MARK: Private funcs
@@ -35,13 +53,12 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance;
         
         //Label
-        let text = "Hello"
         let labelAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
-            .font: UIFont.systemFont(ofSize: 20)
+            .font: UIFont.systemFont(ofSize: 18)
         ]
         
-        let attributedString = NSAttributedString(string: text, attributes: labelAttributes)
+        let attributedString = NSAttributedString(string: welcomeText, attributes: labelAttributes)
         
         welcomeLabel.textAlignment = .center
         welcomeLabel.attributedText = attributedString
@@ -62,6 +79,10 @@ class HomeViewController: UIViewController {
         secondButtonConfig.baseForegroundColor = .white
         secondButtonConfig.titleAlignment = .center
         randomApodButton.configuration = secondButtonConfig
+    }
+    
+    private func updateTimeLabel(date: String){
+        welcomeLabel.text = "Astronomy Picture Of the Day\n\nServer Time:\n\(date)"
     }
     
 //MARK: Button Actions
