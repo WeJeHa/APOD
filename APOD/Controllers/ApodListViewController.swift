@@ -23,9 +23,9 @@ class ApodListViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         apodTableView.dataSource = self
         initUI()
-        VM.getListOfPictures()
         
-        VM._picture.subscribe{ event in
+        VM.getListOfPictures(date: Date(), numOfData: 4)
+        VM._pictures.subscribe{ event in
             let pictures: [Picture] = event.element ?? []
             self.apodData = pictures
             self.apodTableView.reloadData()
@@ -50,25 +50,28 @@ class ApodListViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Declare reuseable tableview cell
         let apodCell = apodTableView.dequeueReusableCell(withIdentifier: "apodCell", for: indexPath) as! ApodTableViewCell
-        apodCell.ApodCellImage.layer.cornerRadius = 20.0
+        
+        //Cell styling
+        apodCell.ApodCellImage.layer.cornerRadius = 10.0
+        
         //Prep data
         let apod = apodData?[indexPath.row]
         
-        //Image
+        //Set image
         if apod?.media_type == "video"{
             apodCell.ApodCellImage.loadFrom(URLAddress: apod?.thumbnail_url ?? "")
         }else{
             apodCell.ApodCellImage.loadFrom(URLAddress: apod?.url ?? "")
         }
         
-        //Title
+        //Set title
         apodCell.ApodCellLabel.text = apod?.title
         
         return apodCell
     }
     
     private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 30
+        return 30
     }
 }
 

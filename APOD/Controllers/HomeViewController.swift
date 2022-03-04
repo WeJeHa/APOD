@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         startTimer()
         
         //MARK: Subscription
-        VM._picture.subscribe{ event in
+        VM._pictures.subscribe{ event in
             if self.buttonPressed == true{
                 self.attemptShowApod(status: true)
             }
@@ -115,10 +115,11 @@ class HomeViewController: UIViewController {
         switchButtons(bool: true)
     }
     
+    
 //MARK: Button Actions
     @IBAction func showApod(_ sender: Any) {
         buttonPressed = true
-        VM.getListOfPictures()
+        VM.getListOfPictures(date: Date(), numOfData: 4)
         attemptShowApod(status: false)
     }
     
