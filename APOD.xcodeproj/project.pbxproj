@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B39639527CDE66A0021B3DD /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B39639427CDE66A0021B3DD /* PictureModel.swift */; };
 		0B659D8927C79C0B008A4376 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B659D8827C79C0B008A4376 /* AppDelegate.swift */; };
 		0B659D8B27C79C0B008A4376 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B659D8A27C79C0B008A4376 /* SceneDelegate.swift */; };
 		0B659D8D27C79C0B008A4376 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B659D8C27C79C0B008A4376 /* HomeViewController.swift */; };
@@ -14,10 +15,14 @@
 		0B659D9227C79C0C008A4376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B659D9127C79C0C008A4376 /* Assets.xcassets */; };
 		0B659D9527C79C0C008A4376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B659D9327C79C0C008A4376 /* LaunchScreen.storyboard */; };
 		0B659DA127C7AC00008A4376 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B659DA027C7AC00008A4376 /* HomeViewModel.swift */; };
+		0B85F08C27CDF907000E6C31 /* ApodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85F08B27CDF907000E6C31 /* ApodListViewController.swift */; };
+		0B85F08E27CDF9D7000E6C31 /* ApodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85F08D27CDF9D7000E6C31 /* ApodTableViewCell.swift */; };
+		0B85F09027CE011F000E6C31 /* ApodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85F08F27CE011F000E6C31 /* ApodListViewModel.swift */; };
 		60CE2EF4B74C7511B02F632D /* Pods_APOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B4187A9C96030D9D0CC758 /* Pods_APOD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B39639427CDE66A0021B3DD /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
 		0B659D8527C79C0B008A4376 /* APOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B659D8827C79C0B008A4376 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B659D8A27C79C0B008A4376 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +32,9 @@
 		0B659D9427C79C0C008A4376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B659D9627C79C0C008A4376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B659DA027C7AC00008A4376 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0B85F08B27CDF907000E6C31 /* ApodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodListViewController.swift; sourceTree = "<group>"; };
+		0B85F08D27CDF9D7000E6C31 /* ApodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodTableViewCell.swift; sourceTree = "<group>"; };
+		0B85F08F27CE011F000E6C31 /* ApodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodListViewModel.swift; sourceTree = "<group>"; };
 		A096F93F6625E5E884D59F94 /* Pods-APOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APOD.debug.xcconfig"; path = "Target Support Files/Pods-APOD/Pods-APOD.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B4187A9C96030D9D0CC758 /* Pods_APOD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_APOD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3F595BFEE85D8985173890 /* Pods-APOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-APOD.release.xcconfig"; path = "Target Support Files/Pods-APOD/Pods-APOD.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0B659D8C27C79C0B008A4376 /* HomeViewController.swift */,
+				0B85F08B27CDF907000E6C31 /* ApodListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -91,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				0B659DA027C7AC00008A4376 /* HomeViewModel.swift */,
+				0B85F08F27CE011F000E6C31 /* ApodListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -98,6 +108,7 @@
 		0B659D9E27C79CFF008A4376 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0B39639427CDE66A0021B3DD /* PictureModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -105,6 +116,7 @@
 		0B659D9F27C79D14008A4376 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0B85F08D27CDF9D7000E6C31 /* ApodTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,7 +127,6 @@
 				A096F93F6625E5E884D59F94 /* Pods-APOD.debug.xcconfig */,
 				DA3F595BFEE85D8985173890 /* Pods-APOD.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -245,6 +256,10 @@
 				0B659D8D27C79C0B008A4376 /* HomeViewController.swift in Sources */,
 				0B659D8927C79C0B008A4376 /* AppDelegate.swift in Sources */,
 				0B659D8B27C79C0B008A4376 /* SceneDelegate.swift in Sources */,
+				0B39639527CDE66A0021B3DD /* PictureModel.swift in Sources */,
+				0B85F08C27CDF907000E6C31 /* ApodListViewController.swift in Sources */,
+				0B85F08E27CDF9D7000E6C31 /* ApodTableViewCell.swift in Sources */,
+				0B85F09027CE011F000E6C31 /* ApodListViewModel.swift in Sources */,
 				0B659DA127C7AC00008A4376 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

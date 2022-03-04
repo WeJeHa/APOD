@@ -16,25 +16,25 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
 //MARK: Viewmodel connection
-    let ViewModel = HomeViewModel()
+    let VM = ApodListViewModel()
     
 //MARK: Variables
     var welcomeText: String = "checking date.."
+    var clockTimer: Timer?
+    var buttonPressed: Bool = false
     
 //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        ViewModel.getTime()
+        startTimer()
         
         //MARK: Subscription
-        ViewModel._clock.subscribe{ event in
-            self.timeLabel.text = event
+        VM._picture.subscribe{ event in
+            if self.buttonPressed == true{
+                self.attemptShowApod(status: true)
+            }
         }
-        
-        ViewModel._date.subscribe{ event in
-            self.updateTimeLabel(date: event.element ?? "")
-        }.disposed(by: DisposeBag())
     }
     
 //MARK: Private funcs
@@ -46,8 +46,6 @@ class HomeViewController: UIViewController {
         title = "Welcome 🪐"
         
         let appearance = UINavigationBarAppearance()
-        //appearance.configureWithOpaqueBackground()
-        //appearance.backgroundColor = UIColor.systemBlue
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         
         navigationController?.navigationBar.standardAppearance = appearance;
@@ -62,8 +60,10 @@ class HomeViewController: UIViewController {
         
         welcomeLabel.textAlignment = .center
         welcomeLabel.attributedText = attributedString
+        timeLabel.text = ""
         
         //Buttons
+        switchButtons(bool: false)
         var mainButtonConfig = UIButton.Configuration.filled()
         mainButtonConfig.title = "View Latest Pictures"
         mainButtonConfig.image = UIImage(systemName: "sparkles",
@@ -81,15 +81,67 @@ class HomeViewController: UIViewController {
         randomApodButton.configuration = secondButtonConfig
     }
     
-    private func updateTimeLabel(date: String){
-        welcomeLabel.text = "Astronomy Picture Of the Day\n\nServer Time:\n\(date)"
+    private func switchButtons(bool: Bool){
+        viewApodButton.isEnabled = bool
+        randomApodButton.isEnabled = bool
+    }
+    
+    private func startTimer(){
+        clockTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(updateTime) , userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer(){
+        if clockTimer != nil {
+            clockTimer!.invalidate()
+            clockTimer = nil
+          }
+    }
+        
+    @objc private func updateTime(){
+        //Format the date
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        
+        //Get day, year-month-day
+        dateFormatter.dateFormat = "EEEE, yyyy-MM-dd"
+        var FormattedDate = dateFormatter.string(from: currentDate)
+        welcomeLabel.text = "Astronomy Picture Of the Day\n\nServer Time:\n\(FormattedDate)"
+        
+        //Get hour:minute:second am/pm
+        dateFormatter.dateFormat = "hh:mm:ss a"
+        FormattedDate = dateFormatter.string(from: currentDate)
+        timeLabel.text = "\(FormattedDate)"
+        switchButtons(bool: true)
     }
     
 //MARK: Button Actions
     @IBAction func showApod(_ sender: Any) {
+        buttonPressed = true
+        VM.getListOfPictures()
+        attemptShowApod(status: false)
     }
     
     @IBAction func randomApod(_ sender: Any) {
+        buttonPressed = true
+    }
+    
+//MARK: Navigation
+    private func attemptShowApod(status: Bool){
+        switch status{
+            case false:
+                var buttonConfig = UIButton.Configuration.filled()
+                buttonConfig.title = "View Latest Pictures"
+                buttonConfig.buttonSize = .large
+                buttonConfig.showsActivityIndicator = true
+                buttonConfig.imagePadding = 5.0
+                buttonConfig.imagePlacement = .trailing
+                viewApodButton.configuration = buttonConfig
+            
+            case true:
+                let destinationStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let VC = destinationStoryBoard.instantiateViewController(withIdentifier: "listOfApodVC") as! ApodListViewController
+                navigationController?.pushViewController(VC, animated: true)
+        }
     }
 }
-
